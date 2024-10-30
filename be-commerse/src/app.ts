@@ -3,7 +3,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import indexRouter from "./routes/index";
 import cors from "cors";
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
 app.use(cors());
 
@@ -28,5 +28,5 @@ app.use(express.json());
 app.use(indexRouter);
 
 app.listen(port, () => {
-  console.log("listening on 3000");
+  console.log("Be is running");
 });
