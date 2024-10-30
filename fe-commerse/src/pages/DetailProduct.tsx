@@ -1,33 +1,66 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { data } from "../commponents/data/product";
-import { IProducts } from "../utils/type";
+import { useAppDispatch, useAppSelector } from "../store";
+import { getProduct } from "../store/productsSlice";
+import { imageUrl } from "../utils/imgaUrl";
+import { useCartHooks } from "../hooks/useCartHooks";
+import { addProductToCart } from "../store/cartSlice";
 
 export default function DetailProduct() {
   const { id } = useParams();
-  const [product, setProduct] = useState<IProducts>();
+  const dispatch = useAppDispatch();
+  const { product } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    const foundProduct = data.find((item) => item.id === Number(id));
-    setProduct(foundProduct);
-  }, [id]);
+    dispatch(getProduct(Number(id)));
+  }, []);
 
   if (!product) {
     return <p>Data Kosong</p>;
   }
+  const { addCart } = useCartHooks();
+  const handleAddCart = async () => {
+    if (id !== undefined) {
+      await addCart(Number(id));
+      dispatch(addProductToCart(product));
+    }
+  };
+
   return (
-    <div className="container-fluid d-flex gap-3">
-      <div key={id} className="card" style={{ width: "18rem" }}>
-        <img src={product.img} className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
-          <p className="card-text">{product.price}</p>
-          {/* <a href={`/detail-product/${product.id}`} className="btn btn-primary">
-            detail
-          </a> */}
+    <div className="container-fluid d-flex gap-3 justify-content-center align-items-center gap-5">
+      <div className=" d-flex gap-3 flex-column">
+        <div className="card" style={{ width: "18rem" }}>
+          <img src={product.img} className="card-img-top" alt="..." />
         </div>
+        <button className="btn btn-danger w-100 fw-bold" onClick={handleAddCart}>
+          Add to Cart
+        </button>
       </div>
-      ;
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Nama</th>
+              <td style={{ textTransform: "capitalize" }}>: {product.name}</td>
+            </tr>
+            <tr>
+              <th>Harga</th>
+              <td>
+                :{" "}
+                {product.price.toLocaleString("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                  minimumFractionDigits: 0,
+                })}
+              </td>
+            </tr>
+            <tr>
+              <th>Deskripsi</th>
+              <td style={{ textWrap: "wrap" }}>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus illo incidunt maxime quaerat ullam delectus saepe mollitia aut facere optio!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
