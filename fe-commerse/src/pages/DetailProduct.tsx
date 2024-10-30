@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../store";
-import { getProduct } from "../store/productsSlice";
-import { imageUrl } from "../utils/imgaUrl";
 import { useCartHooks } from "../hooks/useCartHooks";
+import { useAppDispatch, useAppSelector } from "../store";
 import { addProductToCart } from "../store/cartSlice";
+import { getProduct } from "../store/productsSlice";
 
 export default function DetailProduct() {
   const { id } = useParams();
