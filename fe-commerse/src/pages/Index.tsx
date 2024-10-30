@@ -1,5 +1,5 @@
-import React from "react";
-import Product from "../commponents/product/Product";
+import React, { useEffect, useState } from "react";
+import Product from "./Product";
 
 function Index() {
   return (
