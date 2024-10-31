@@ -1,7 +1,5 @@
 export const useCartHooks = () => {
   const addCart = async (id: number) => {
-    console.log("🚀 ~ addCart ~ id:", id);
-
     try {
       const response = await fetch("https://takehometest-production.up.railway.app/cart", {
         method: "POST",
