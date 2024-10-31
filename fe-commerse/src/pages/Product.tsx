@@ -40,7 +40,13 @@ function Product() {
                 <img src={product.img} style={{ objectFit: "contain", maxHeight: "15rem", minHeight: "15rem" }} className="card-img-top" alt="..." />
                 <div className="card-body ">
                   <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">{product.price}</p>
+                  <p className="card-text">
+                    {product.price.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                      minimumFractionDigits: 0,
+                    })}
+                  </p>
                   <Link to={`/detail-product/${product.id}`} className="btn btn-info" style={{ width: "100%" }}>
                     Detail
                   </Link>

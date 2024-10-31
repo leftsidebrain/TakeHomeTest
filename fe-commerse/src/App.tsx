@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import Navbar from "./commponents/nav/Navbar";
 import DetailProduct from "./pages/DetailProduct";
 import { store } from "./store";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/detail-product/:id" element={<DetailProduct />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Provider>
     </BrowserRouter>

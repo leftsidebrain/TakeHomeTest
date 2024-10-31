@@ -21,7 +21,12 @@ export default function DetailProduct() {
   const handleAddCart = async () => {
     if (id !== undefined) {
       await addCart(Number(id));
-      dispatch(addProductToCart(product));
+      dispatch(
+        addProductToCart({
+          ...product,
+          quantity: 1,
+        })
+      );
     }
   };
 

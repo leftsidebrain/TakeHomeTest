@@ -92,13 +92,13 @@ PORT=5000
 
 ### ▶️ Usage
 
-- Frontend: Buka http://localhost:5173untuk mengakses aplikasi.
+- Frontend: Buka http://localhost:5173 untuk mengakses aplikasi.
 - Backend: API tersedia di http://localhost:3000.
 
 ### 📂 Project Structure
 
 ```bash
-simple-ecommerce-app/
+TakeHomeTest/
 ├── client/ # Frontend (React + Vite)
 │ ├── public/ # Public assets
 │ ├── src/ # Source code

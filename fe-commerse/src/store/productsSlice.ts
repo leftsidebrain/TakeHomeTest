@@ -28,13 +28,13 @@ const initialState: ProductsState = {
   },
 };
 export const getProducts = createAsyncThunk("products/getProducts", async () => {
-  const response = await fetch("http://localhost:3000/products");
+  const response = await fetch("https://takehometest-production.up.railway.app/products");
   const data = await response.json();
   return data.data;
 });
 
 export const getProduct = createAsyncThunk("getById", async (id: number) => {
-  const response = await fetch(`http://localhost:3000/product/${id}`);
+  const response = await fetch(`https://takehometest-production.up.railway.app/product/${id}`);
   const data = await response.json();
   return data.data;
 });

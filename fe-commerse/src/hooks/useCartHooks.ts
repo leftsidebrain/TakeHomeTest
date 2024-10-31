@@ -3,7 +3,7 @@ export const useCartHooks = () => {
     console.log("🚀 ~ addCart ~ id:", id);
 
     try {
-      const response = await fetch("http://localhost:3000/cart", {
+      const response = await fetch("https://takehometest-production.up.railway.app/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

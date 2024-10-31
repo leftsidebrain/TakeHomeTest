@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setKeyword } from "../../store/searchSlice";
 
@@ -10,6 +10,8 @@ function Navbar() {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(event.target.value));
   };
+
+  const nav = useNavigate();
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5">
       <div className="container-fluid">
@@ -28,7 +30,7 @@ function Navbar() {
             </li>
           </ul>
           <form className="d-flex gap-4" role="search">
-            <div className=" position-relative">
+            <div className=" position-relative" onClick={() => nav("/cart")}>
               {cart.length > 0 && (
                 <span style={{ position: "absolute", right: -5, backgroundColor: "maroon", color: "wheat", fontSize: "13px", width: "1rem", height: "1rem", textAlign: "center", borderRadius: "50%", lineHeight: "15px" }}>{cart.length}</span>
               )}
